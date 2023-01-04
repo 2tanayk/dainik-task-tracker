@@ -38,6 +38,9 @@ const dayNames = [
   "Saturday",
 ];
 
+let themeDropDown=document.querySelector('.theme-dropdown-container')
+let themeSwitchBtn=document.querySelector('.palette-icon-container')
+let themeDropDownCloseIcon=document.querySelector('.cross-icon')
 let todayBtn = document.getElementById("today-btn")
 let searchBar = document.getElementById("search-input")
 let prevMonthSwitch = document.getElementById("prev-switch")
@@ -51,7 +54,23 @@ let inputDescTextarea = document.getElementById("input-description-textarea")
 let addBtn = document.getElementById("add-btn")
 let cancelBtn = document.getElementById("cancel-btn")
 
-console.log(todayBtn)
+themeSwitchBtn.addEventListener('click',function(e){
+  themeDropDown.style.display='flex'
+})
+
+themeDropDownCloseIcon.addEventListener('click',function(e){
+  themeDropDown.style.display='none'
+})
+
+themeDropDown.addEventListener('click',function(e){
+  if(e.target.classList.contains('theme-col-box') || e.target.classList.contains('bg-col-box')){
+    let curThemeThumbnail=e.target.closest('.theme-thumbnail')
+    console.log(curThemeThumbnail.id)
+    let check=themeDropDown.querySelector('.fa-check')
+    check.remove()
+    curThemeThumbnail.lastElementChild.append(check)
+  }
+})
 
 todayBtn.addEventListener('click',function(e){
   console.log('going back to today')

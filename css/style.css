@@ -25,9 +25,10 @@ hr {
   position: relative;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: black;
   color: white;
   width: 100%;
+  min-height: 45px;
 }
 
 .nav-left-container {
@@ -90,10 +91,109 @@ input.search-bar:focus {
   margin-right: 1.0rem;
 }
 
-.palette-icon {
+.palette-icon-container {
   font-size: 1.5rem;
   cursor: pointer;
 }
+
+.cross-icon-container {
+  align-self: flex-start;
+}
+
+.cross-icon {
+  cursor: pointer;
+}
+
+.theme-dropdown-container {
+  padding: 5px;
+  width: 300px;
+  display: none;
+  position: absolute;
+  right:0;
+  top:50px;
+  color: black;
+  background-color: white;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.theme-thumbnail {
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  width: 70px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.theme-col-box {
+  padding: 2px 5px;
+  font-size: 0.8rem;
+  font-weight:light;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 40%;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.bg-col-box {
+  position: relative;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: 60%;
+  width: 100%;
+  background-color: white;
+}
+
+.bg-col-box > i {
+  position: absolute;
+  bottom:2px;
+  right:2px;
+}
+
+#theme-default > .theme-col-box {
+  background-color: black;
+  color: white;
+}
+
+#theme-default > .bg-col-box {
+  background-color: white;
+  color:black;
+}
+
+#theme-light > .theme-col-box {
+  background-color: #f0f0f0;
+  color: black;
+}
+
+#theme-light > .bg-col-box {
+  background-color: white;
+  color: black;
+}
+
+#theme-dark > .theme-col-box {
+  background-color: #2e2e2e;
+  color:white;
+}
+
+#theme-dark > .bg-col-box {
+  background-color: black;
+  color: white;
+}
+
+/* .nav-right-container:hover .dropdown-content {
+  display: block;
+} */
 
 .main-container {
   display: flex;
@@ -107,7 +207,7 @@ input.search-bar:focus {
   display: flex;
   justify-content: center;
   padding-left: 0.5rem;
-  background-color: #f9f9f9;
+  background-color: #fbfbfb;
 }
 
 .content {
