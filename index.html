@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js" defer></script>
+    <title>Karo</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-left-container">
+        <div class="brand-title">Karo</div>
+        <span class="today-icon"><i id="today-btn" class="fa-solid fa-calendar-day"></i></span>
+        <div class="search-container">
+          <span class="search-icon"><i class="fa fa-search"></i></span>
+          <input id="search-input" class="search-bar" type="text" placeholder="Search" name="search"/>
+        </div>
+      </div>
+
+      <div class="nav-right-container">
+        <span class="palette-icon"><i class="fa fa-palette"></i></span>
+      </div>
+    </nav>
+
+    <div class="main-container">
+      <div class="side">
+        <div class="calendar-container">
+          <div class="calendar-header">
+            <pre class="month-switch" id="prev-switch"><</pre>
+            <div class="month-year-name">January 2022</div>
+            <pre class="month-switch disable" id="nxt-switch">></pre>
+          </div>
+          <div class="calendar-dow">
+            <div class="calendar-cell">Su</div>
+            <div class="calendar-cell">Mo</div>
+            <div class="calendar-cell">Tu</div>
+            <div class="calendar-cell">We</div>
+            <div class="calendar-cell">Th</div>
+            <div class="calendar-cell">Fr</div>
+            <div class="calendar-cell">Sa</div>
+          </div>
+          <div class="calendar-body" data-month="0" data-year="2023">
+            <!-- <div class="calendar-row">
+              <div>1</div>
+              <div>2</div>
+              <div>3</div>
+              <div>3</div>
+              <div>1</div>
+              <div>2</div>
+              <div>3</div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="todo-switch" id="prev-todo">
+          <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="todo-container">
+          <div class="entry-header" data-day="27" data-month="11" data-year="2022">
+            <h3>Today</h3>
+            <h5>&#x2022; 27th Dec, 2022</h5>
+            <h5>&#x2022; Tuesday</h5>
+          </div>
+          <hr />
+          <div class="done-container" data-status="done">
+            <h4>Done</h4>
+            <hr />
+            <div class="todo-entry" data-uid="id1672674761333">
+              <div class="custom-check">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="todo-text">
+                <div class="title">
+                  Complete Striver's graph theory playlist
+                </div>
+                <div class="description">
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                  accusantium doloremque laudantium, totam rem aperiam, eaque
+                  ipsa quae ab illo inventore veritatis et quasi architecto
+                  beatae vitae dicta sunt explicabo.
+                </div>
+              </div>
+              <div class="todo-crud">
+                <span><i class="fa-solid fa-pen"></i></span>
+                <span><i class="fa-solid fa-trash"></i></span>
+              </div>
+            </div>
+            <div class="edit-todo-entry">
+              <div class="edit-entry-container">
+                <div class="edit-todo-title">
+                  <textarea rows="1" placeholder="Chore name"></textarea>
+                </div>
+                <div class="edit-todo-description">
+                  <textarea rows="3" placeholder="Chore description"></textarea>
+                </div>
+              </div>
+              <div class="save-cancel-btns">
+                <span class="edit-cancel-btn">Cancel</span>
+                <span class="edit-save-btn">Save</span>
+              </div>
+            </div>
+            <hr />
+            <div class="todo-entry">
+              <div class="custom-check">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="todo-text">
+                <div class="title">Chest day at the gym</div>
+                <div class="description">
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                  accusantium doloremque laudantium, totam rem aperiam, eaque
+                  ipsa quae ab.
+                </div>
+              </div>
+              <div class="todo-crud">
+                <span><i class="fa-solid fa-pen"></i></span>
+                <span><i class="fa-solid fa-trash"></i></span>
+              </div>
+            </div>
+            <div class="edit-todo-entry">
+              <div class="edit-entry-container">
+                <div class="edit-todo-title">
+                  <textarea
+                    class="edit-title-text"
+                    rows="1"
+                    placeholder="Chore name"
+                  ></textarea>
+                </div>
+                <div class="edit-todo-description">
+                  <textarea
+                    class="edit-description-text"
+                    rows="3"
+                    placeholder="Chore description"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="save-cancel-btns">
+                <span class="edit-cancel-btn">Cancel</span>
+                <span class="edit-save-btn">Save</span>
+              </div>
+            </div>
+            <hr />
+          </div>
+
+          <div class="pending-container" data-status="pending">
+            <h4>Pending</h4>
+            <hr />
+            <div class="todo-entry">
+              <div class="custom-check">
+                <!-- <i class="fa-solid fa-check"></i> -->
+              </div>
+              <div class="todo-text">
+                <div class="title">Complete side project</div>
+                <div class="description">
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                  accusantium doloremque laudantium, totam rem aperiam, eaque
+                  ipsa quae ab.edekh3rifh4tifh.edbj3ryfrfg
+                </div>
+              </div>
+              <div class="todo-crud">
+                <span><i class="fa-solid fa-pen"></i></span>
+                <span><i class="fa-solid fa-trash"></i></span>
+              </div>
+            </div>
+            <div class="edit-todo-entry">
+              <div class="edit-entry-container">
+                <div class="edit-todo-title">
+                  <textarea rows="1" placeholder="Chore name"></textarea>
+                </div>
+                <div class="edit-todo-description">
+                  <textarea rows="3" placeholder="Chore description"></textarea>
+                </div>
+              </div>
+              <div class="save-cancel-btns">
+                <span class="edit-cancel-btn">Cancel</span>
+                <span class="edit-save-btn">Save</span>
+              </div>
+            </div>
+            <hr />
+            <div class="todo-entry">
+              <div class="custom-check">
+                <!-- <i class="fa-solid fa-check"></i> -->
+              </div>
+              <div class="todo-text">
+                <div class="title">
+                  Complete today's Leetcode daily challenge
+                </div>
+                <div class="description">
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                  accusantium doloremque laudantium.
+                </div>
+              </div>
+              <div class="todo-crud">
+                <span><i class="fa-solid fa-pen"></i></span>
+                <span><i class="fa-solid fa-trash"></i></span>
+              </div>
+            </div>
+            <div class="edit-todo-entry">
+              <div class="edit-entry-container">
+                <div class="edit-todo-title">
+                  <textarea rows="1" placeholder="Chore name"></textarea>
+                </div>
+                <div class="edit-todo-description">
+                  <textarea rows="3" placeholder="Chore description"></textarea>
+                </div>
+              </div>
+              <div class="save-cancel-btns">
+                <span class="edit-cancel-btn">Cancel</span>
+                <span class="edit-save-btn">Save</span>
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div id="add-todo-btn" class="add-todo-entry">
+            <span class="add-icon"><i class="fa-light fa-plus"></i></span>
+            <span>Add Chore</span>
+          </div>
+          <div class="input-todo-entry">
+            <div class="text-entry-container">
+              <div class="input-todo-title">
+                <textarea
+                  id="input-title-textarea"
+                  rows="1"
+                  placeholder="Chore name"
+                ></textarea>
+              </div>
+              <div class="input-todo-description">
+                <textarea
+                  id="input-description-textarea"
+                  rows="3"
+                  placeholder="Chore description"
+                ></textarea>
+              </div>
+            </div>
+            <div class="add-cancel-btns">
+              <span id="cancel-btn">Cancel</span>
+              <span id="add-btn" class="disable">Add</span>
+            </div>
+          </div>
+        </div>
+        <div class="todo-switch disable" id="next-todo">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/5d218f91ef.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

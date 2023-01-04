@@ -1,0 +1,538 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 0em 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  width: 100%;
+}
+
+.nav-left-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 25%;
+  /* margin-left: 0.5rem; */
+  /* background-color: red; */
+}
+
+.search-container {
+  width: 60%;
+  padding: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 2px;
+}
+
+input.search-bar:focus {
+  outline-width: 0;
+}
+
+.search-bar {
+  width: 90%;
+  border-style: none;
+  margin-left: 10px;
+}
+
+.search-icon {
+  color: black;
+}
+
+.today-icon {
+  width: 8%;
+  min-width: 20px;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1.3rem;
+  cursor: pointer;
+  /* margin-right: auto; */
+  /* background-color: aqua; */
+}
+
+.brand-title {
+  /* background-color: aqua; */
+  width: 15%;
+  min-width: 50px;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  margin-left: 1rem;
+}
+
+.nav-right-container {
+  /* background-color: aquamarine; */
+  height: 100%;
+  margin-right: 1.0rem;
+}
+
+.palette-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.side {
+  width: 25%;
+  height: 92.6vh;
+  display: flex;
+  justify-content: center;
+  padding-left: 0.5rem;
+  background-color: #f9f9f9;
+}
+
+.content {
+  width: 75%;
+  height: 92.6vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 1.5rem;
+  overflow: auto;
+}
+
+.calendar-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-header {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 20vh;
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+  padding: 0 0;
+  /* background-color: aquamarine; */
+  font-size: 1.2rem;
+}
+
+.month-switch {
+  font-weight: bolder;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.month-switch:hover {
+  background-color: rgb(206, 205, 205);
+  border-radius: 100px;
+  padding: 5px;
+}
+
+.month-year-name {
+  font-weight: lighter;
+}
+
+.calendar-dow {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 1vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 100;
+  color: gray;
+}
+
+.calendar-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+}
+
+.date-cell {
+  cursor: pointer;
+}
+
+.date-cell:hover {
+  background-color: rgb(231, 229, 229);
+  border-radius: 50%;
+}
+
+.today-cell {
+  color: white;
+  background-color: black;
+  border-radius: 50%;
+  font-weight: 100;
+}
+
+.select-cell{
+  background-color: gray;
+  border-radius: 50%;
+}
+
+.calendar-body {
+  width: 60%;
+  height: 30vh;
+  margin: 0 auto;
+  /* background-color: bisque; */
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.calendar-row {
+  /* background-color: aqua; */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.disable {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.todo-container {
+  /* background-color: aqua; */
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-switch {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: fixed;
+  top: 50%;
+  font-size: 1rem;
+  margin: 0;
+  font-weight: bolder;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#prev-todo {
+  left: 30%;
+}
+
+#next-todo {
+  right: 6.5%;
+}
+
+.todo-switch:hover {
+  background-color: rgb(233, 233, 233);
+  border-radius: 50%;
+}
+
+.entry-header {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin: 0.5rem 0;
+  /* background-color: blanchedalmond; */
+}
+
+div.entry-header > h3 {
+  font-weight: bolder;
+  margin: 0;
+  padding: 0;
+}
+div.entry-header > h5 {
+  font-weight: normal;
+  margin: 0;
+  padding-bottom: 1.5px;
+}
+
+.done-container {
+  margin-top: 1.5rem;
+  width: 100%;
+  /* background-color:aqua; */
+}
+
+div.done-container > h4 {
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* div.done-container > hr {
+    margin-bottom: 0rem;
+} */
+
+.pending-container {
+  margin-top: 1rem;
+  width: 100%;
+  /* background-color: red; */
+}
+
+div.pending-container > h4 {
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* div.pending-container > hr {
+  margin-bottom: 0.0rem;
+} */
+
+.todo-entry {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.todo-entry:hover .todo-crud {
+  visibility: visible;
+}
+
+.custom-check {
+  height: 18px;
+  width: 18px;
+  border-style: solid;
+  border-radius: 50%;
+  border-width: 1.5px;
+  border-color: gray;
+  display: inline-block;
+  font-size: 15px;
+}
+
+.todo-text {
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.description {
+  font-weight: 100;
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.todo-crud {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 7%;
+  font-size: 12px;
+  visibility: hidden;
+}
+
+.add-todo-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 14%;
+  color: gray;
+  margin-top: 0.3rem;
+  font-weight: 100;
+  font-size: 0.9rem;
+  cursor: pointer;
+  /* background-color: aqua; */
+}
+
+.add-icon {
+  width: 1.3rem;
+  height: 1.3rem;
+  /* background-color: aliceblue; */
+  font-size: 1.5rem;
+  color: black;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-todo-entry:hover {
+  color: black;
+}
+
+.add-todo-entry:hover .add-icon {
+  color: white;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.input-todo-entry {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 0.3rem;
+}
+
+.text-entry-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.text-entry-container textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+.input-todo-title {
+  width: 100%;
+}
+
+.input-todo-description {
+  width: 100%;
+}
+
+.add-cancel-btns {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0.3rem 0;
+}
+
+.add-cancel-btns > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#cancel-btn {
+  background-color: #f5f5f5;
+  color: black;
+  margin-right: 7px;
+}
+
+#add-btn {
+  background-color: rgb(48, 48, 48);
+  color: white;
+}
+
+#cancel-btn:hover {
+  background-color: #999;
+}
+
+#add-btn:hover {
+  background-color: black;
+}
+
+.edit-todo-entry {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.edit-entry-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.edit-entry-container textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+.edit-todo-title {
+  width: 100%;
+}
+
+.edit-todo-description {
+  width: 100%;
+}
+
+.edit-title-text {
+}
+
+.edit-description-text {
+}
+
+.save-cancel-btns {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0rem 0;
+  margin-top: 0.2rem;
+}
+
+.save-cancel-btns > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-cancel-btn {
+  background-color: #f5f5f5;
+  color: black;
+  margin-right: 7px;
+}
+
+.edit-save-btn {
+  background-color: rgb(48, 48, 48);
+  color: white;
+}
+
+.edit-cancel-btn:hover {
+  background-color: #999;
+}
+
+.edit-save-btn:hover {
+  background-color: black;
+}
