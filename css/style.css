@@ -3,7 +3,84 @@
 }
 
 html {
-  background-color: white;
+  background-color: var(--color-background);
+}
+
+.theme-default {
+  --color-primary: black;
+  --color-primary-variant: rgb(48, 48, 48);
+  --color-background: white;
+  --color-background-variant: #f5f5f5;
+  --color-on-primary: white;
+  --color-side: #fbfbfb;
+  --color-text-main: black;
+  --color-text-secondary: gray;
+  --color-search-bar: black;
+  --color-hr: #ccc;
+  --color-on-hover-type1: rgb(233, 233, 233);
+  --color-on-hover-type2: rgb(231, 229, 229);
+  --color-btn-type1: #f5f5f5;
+  --color-btn-type1-hover: #999;
+  --color-btn-type1-text: black;
+  --color-btn-type2: rgb(48, 48, 48);
+  --color-btn-type2-hover: black;
+  --color-btn-type2-text: white;
+  --box-shadow-color: rgba(0, 0, 0, 0.2);
+  --color-border: gray;
+  --color-today-cell: black;
+}
+
+.theme-dark {
+  --color-primary: #2e2e2e;
+  --color-primary-variant: black;
+  --color-background: black;
+  --color-background-variant: #2e2e2e;
+  --color-on-primary: white;
+  --color-side: #454545;
+  --color-text-main: white;
+  --color-text-secondary: rgb(202, 202, 202);
+  --color-search-bar: white;
+  --color-hr: rgb(223, 223, 223);
+  --color-on-hover-type1: rgb(140, 140, 140);
+  --color-on-hover-type2: rgb(158, 158, 158);
+  --color-btn-type1: #3e3e3e;
+  --color-btn-type1-hover: rgb(55, 55, 55);
+  --color-btn-type1-text: white;
+  --color-btn-type2: white;
+  --color-btn-type2-hover: rgb(230, 230, 230);
+  --color-btn-type2-text: black;
+  --box-shadow-color: rgba(255, 255, 255, 0.2);
+  --color-border: rgb(165, 164, 164);
+  --color-today-cell: #2e2e2e;
+}
+
+.theme-light {
+  --color-primary: #fbfbfb;
+  --color-primary-variant: white;
+  --color-background: white;
+  --color-background-variant: white;
+  --color-on-primary: black;
+  --color-side: #f5f5f5;
+  --color-text-main: black;
+  --color-text-secondary: gray;
+  --color-search-bar: black;
+  --color-hr: #ccc;
+  --color-on-hover-type1: rgb(233, 233, 233);
+  --color-on-hover-type2: rgb(231, 229, 229);
+  --color-btn-type1: #f5f5f5;
+  --color-btn-type1-hover: #999;
+  --color-btn-type1-text: black;
+  --color-btn-type2: rgb(48, 48, 48);
+  --color-btn-type2-hover: black;
+  --color-btn-type2-text: white;
+  --box-shadow-color: rgba(0, 0, 0, 0.2);
+  --color-border: gray;
+  --color-today-cell: #e7e7e7;
+}
+
+::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 1;
 }
 
 body {
@@ -15,7 +92,7 @@ hr {
   display: block;
   height: 1px;
   border: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--color-hr);
   margin: 0em 0;
   padding: 0;
 }
@@ -25,8 +102,8 @@ hr {
   position: relative;
   justify-content: space-between;
   align-items: center;
-  background-color: black;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
   width: 100%;
   /* min-height: 45px; */
 }
@@ -47,7 +124,7 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: var(--color-side);
   border-radius: 2px;
 }
 
@@ -59,10 +136,12 @@ input.search-bar:focus {
   width: 90%;
   border-style: none;
   margin-left: 10px;
+  color: var(--color-search-bar);
+  background-color: var(--color-side);
 }
 
 .search-icon {
-  color: black;
+  color: var(--color-search-bar);
 }
 
 .today-icon {
@@ -88,7 +167,7 @@ input.search-bar:focus {
 .nav-right-container {
   /* background-color: aquamarine; */
   height: 100%;
-  margin-right: 1.0rem;
+  margin-right: 1rem;
 }
 
 .palette-icon-container {
@@ -109,14 +188,15 @@ input.search-bar:focus {
   width: 300px;
   display: none;
   position: absolute;
-  right:0;
-  top:50px;
-  color: black;
-  background-color: white;
+  right: 0;
+  top: 45px;
+  color: var(--color-text-main);
+  background-color: var(--color-background);
   justify-content: space-around;
   flex-wrap: wrap;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border: 1px solid var(--color-border);
+  /* box-shadow: 0px 8px 16px 0px var(--box-shadow-color); */
   z-index: 1;
   border-radius: 5px;
 }
@@ -126,7 +206,7 @@ input.search-bar:focus {
   flex-direction: column;
   height: 50px;
   width: 70px;
-  border: 1px solid gray;
+  border: 1px solid var(--color-border);
   border-radius: 5px;
   padding: 0;
   cursor: pointer;
@@ -135,12 +215,11 @@ input.search-bar:focus {
 .theme-col-box {
   padding: 2px 5px;
   font-size: 0.8rem;
-  font-weight:light;
+  font-weight: light;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   height: 40%;
   width: 100%;
-  background-color: black;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -152,13 +231,12 @@ input.search-bar:focus {
   border-bottom-right-radius: 5px;
   height: 60%;
   width: 100%;
-  background-color: white;
 }
 
 .bg-col-box > i {
   position: absolute;
-  bottom:2px;
-  right:2px;
+  bottom: 2px;
+  right: 2px;
 }
 
 #theme-default > .theme-col-box {
@@ -168,7 +246,7 @@ input.search-bar:focus {
 
 #theme-default > .bg-col-box {
   background-color: white;
-  color:black;
+  color: black;
 }
 
 #theme-light > .theme-col-box {
@@ -183,7 +261,7 @@ input.search-bar:focus {
 
 #theme-dark > .theme-col-box {
   background-color: #2e2e2e;
-  color:white;
+  color: white;
 }
 
 #theme-dark > .bg-col-box {
@@ -207,7 +285,7 @@ input.search-bar:focus {
   display: flex;
   justify-content: center;
   padding-left: 0.5rem;
-  background-color: #fbfbfb;
+  background-color: var(--color-side);
 }
 
 .content {
@@ -237,16 +315,18 @@ input.search-bar:focus {
   padding: 0 0;
   /* background-color: aquamarine; */
   font-size: 1.2rem;
+  color: var(--color-text-main);
 }
 
 .month-switch {
   font-weight: bolder;
   cursor: pointer;
   padding: 5px;
+  color: var(--color-text-main);
 }
 
 .month-switch:hover {
-  background-color: rgb(206, 205, 205);
+  background-color: var(--color-on-hover-type1);
   border-radius: 100px;
   padding: 5px;
 }
@@ -264,7 +344,7 @@ input.search-bar:focus {
   justify-content: space-between;
   font-size: 0.8rem;
   font-weight: 100;
-  color: gray;
+  color: var(--color-text-secondary);
 }
 
 .calendar-cell {
@@ -277,24 +357,25 @@ input.search-bar:focus {
 
 .date-cell {
   cursor: pointer;
+  color: var(--color-text-main);
 }
 
 .date-cell:hover {
-  background-color: rgb(231, 229, 229);
+  background-color: var(--color-on-hover-type2);
   border-radius: 50%;
 }
 
 .today-cell {
-  color: white;
-  background-color: black;
+  color: var(--color-on-primary);
+  background-color: var(--color-today-cell);
   border-radius: 50%;
   font-weight: 100;
 }
 
-.select-cell{
+/* .select-cell{
   background-color: gray;
   border-radius: 50%;
-}
+} */
 
 .calendar-body {
   width: 60%;
@@ -343,6 +424,7 @@ input.search-bar:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--color-text-main);
 }
 
 #prev-todo {
@@ -354,7 +436,7 @@ input.search-bar:focus {
 }
 
 .todo-switch:hover {
-  background-color: rgb(233, 233, 233);
+  background-color: var(--color-on-hover-type1);
   border-radius: 50%;
 }
 
@@ -364,6 +446,7 @@ input.search-bar:focus {
   align-items: flex-end;
   justify-content: flex-start;
   margin: 0.5rem 0;
+  color: var(--color-text-main);
   /* background-color: blanchedalmond; */
 }
 
@@ -387,6 +470,7 @@ div.entry-header > h5 {
 div.done-container > h4 {
   margin: 0;
   margin-bottom: 0.5rem;
+  color: var(--color-text-main);
 }
 
 /* div.done-container > hr {
@@ -402,6 +486,7 @@ div.done-container > h4 {
 div.pending-container > h4 {
   margin: 0;
   margin-bottom: 0.5rem;
+  color: var(--color-text-main);
 }
 
 /* div.pending-container > hr {
@@ -426,7 +511,8 @@ div.pending-container > h4 {
   border-style: solid;
   border-radius: 50%;
   border-width: 1.5px;
-  border-color: gray;
+  border-color: var(--color-border);
+  color: var(--color-text-main);
   display: inline-block;
   font-size: 15px;
 }
@@ -442,12 +528,13 @@ div.pending-container > h4 {
   font-weight: bold;
   font-size: 1rem;
   margin-bottom: 0.2rem;
+  color: var(--color-text-main);
 }
 
 .description {
   font-weight: 100;
   font-size: 0.8rem;
-  color: gray;
+  color: var(--color-text-secondary);
 }
 
 .todo-crud {
@@ -457,6 +544,7 @@ div.pending-container > h4 {
   width: 7%;
   font-size: 12px;
   visibility: hidden;
+  color: var(--color-text-main);
 }
 
 .add-todo-entry {
@@ -464,7 +552,7 @@ div.pending-container > h4 {
   align-items: center;
   justify-content: space-between;
   width: 14%;
-  color: gray;
+  color: var(--color-text-secondary);
   margin-top: 0.3rem;
   font-weight: 100;
   font-size: 0.9rem;
@@ -477,7 +565,7 @@ div.pending-container > h4 {
   height: 1.3rem;
   /* background-color: aliceblue; */
   font-size: 1.5rem;
-  color: black;
+  color: var(--color-text-main);
   font-weight: bolder;
   display: flex;
   align-items: center;
@@ -485,12 +573,12 @@ div.pending-container > h4 {
 }
 
 .add-todo-entry:hover {
-  color: black;
+  color: var(--color-text-main);
 }
 
 .add-todo-entry:hover .add-icon {
-  color: white;
-  background-color: black;
+  color: var(--color-on-primary);
+  background-color: var(--color-primary);
   border-radius: 50%;
 }
 
@@ -505,7 +593,7 @@ div.pending-container > h4 {
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid var(--color-text-main);
   border-radius: 10px;
   padding: 5px;
 }
@@ -515,6 +603,8 @@ div.pending-container > h4 {
   border: none;
   outline: none;
   resize: none;
+  color: var(--color-text-main);
+  background-color: var(--color-background);
 }
 
 .input-todo-title {
@@ -544,22 +634,22 @@ div.pending-container > h4 {
 }
 
 #cancel-btn {
-  background-color: #f5f5f5;
-  color: black;
+  background-color: var(--color-btn-type1);
+  color: var(--color-btn-type1-text);
   margin-right: 7px;
 }
 
 #add-btn {
-  background-color: rgb(48, 48, 48);
-  color: white;
+  background-color: var(--color-btn-type2);
+  color: var(--color-btn-type2-text);
 }
 
 #cancel-btn:hover {
-  background-color: #999;
+  background-color: var(--color-btn-type1-hover);
 }
 
 #add-btn:hover {
-  background-color: black;
+  background-color: var(--color-btn-type2-hover);
 }
 
 .edit-todo-entry {
@@ -573,7 +663,7 @@ div.pending-container > h4 {
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid var(--color-text-main);
   border-radius: 10px;
   padding: 5px;
 }
@@ -583,6 +673,8 @@ div.pending-container > h4 {
   border: none;
   outline: none;
   resize: none;
+  color: var(--color-text-main);
+  background-color: var(--color-background);
 }
 
 .edit-todo-title {
@@ -619,20 +711,20 @@ div.pending-container > h4 {
 }
 
 .edit-cancel-btn {
-  background-color: #f5f5f5;
-  color: black;
+  background-color: var(--color-btn-type1);
+  color: var(--color-btn-type1-text);
   margin-right: 7px;
 }
 
 .edit-save-btn {
-  background-color: rgb(48, 48, 48);
-  color: white;
+  background-color: var(--color-btn-type2);
+  color: var(--color-btn-type2-text);
 }
 
 .edit-cancel-btn:hover {
-  background-color: #999;
+  background-color: var(--color-btn-type1-hover);
 }
 
 .edit-save-btn:hover {
-  background-color: black;
+  background-color: var(--color-btn-type2-hover);
 }

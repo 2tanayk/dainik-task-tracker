@@ -1,6 +1,6 @@
 let todayDate = new Date();
 let date = new Date();
-let seekedDate=new Date();
+let seekedDate = new Date();
 
 let currentFirstDay = getFirstDay(
   todayDate.getFullYear(),
@@ -38,78 +38,98 @@ const dayNames = [
   "Saturday",
 ];
 
-let themeDropDown=document.querySelector('.theme-dropdown-container')
-let themeSwitchBtn=document.querySelector('.palette-icon-container')
-let themeDropDownCloseIcon=document.querySelector('.cross-icon')
-let todayBtn = document.getElementById("today-btn")
-let searchBar = document.getElementById("search-input")
-let prevMonthSwitch = document.getElementById("prev-switch")
-let nxtMonthSwitch = document.getElementById("nxt-switch")
-let prevTodoSwitch = document.getElementById("prev-todo")
-let nxtTodoSwitch = document.getElementById("next-todo")
-let addTodoEntryBtn = document.getElementById("add-todo-btn")
-let inputTodoEntryContainer = document.querySelector(".input-todo-entry")
-let inputTitleTextarea = document.getElementById("input-title-textarea")
-let inputDescTextarea = document.getElementById("input-description-textarea")
-let addBtn = document.getElementById("add-btn")
-let cancelBtn = document.getElementById("cancel-btn")
+let themeDropDown = document.querySelector(".theme-dropdown-container");
+let themeSwitchBtn = document.querySelector(".palette-icon-container");
+let themeDropDownCloseIcon = document.querySelector(".cross-icon");
+let todayBtn = document.getElementById("today-btn");
+let searchBar = document.getElementById("search-input");
+let prevMonthSwitch = document.getElementById("prev-switch");
+let nxtMonthSwitch = document.getElementById("nxt-switch");
+let prevTodoSwitch = document.getElementById("prev-todo");
+let nxtTodoSwitch = document.getElementById("next-todo");
+let addTodoEntryBtn = document.getElementById("add-todo-btn");
+let inputTodoEntryContainer = document.querySelector(".input-todo-entry");
+let inputTitleTextarea = document.getElementById("input-title-textarea");
+let inputDescTextarea = document.getElementById("input-description-textarea");
+let addBtn = document.getElementById("add-btn");
+let cancelBtn = document.getElementById("cancel-btn");
 
-themeSwitchBtn.addEventListener('click',function(e){
-  themeDropDown.style.display='flex'
-})
+let curTheme = loadSavedTheme();
+setTheme(curTheme);
 
-themeDropDownCloseIcon.addEventListener('click',function(e){
-  themeDropDown.style.display='none'
-})
+themeSwitchBtn.addEventListener("click", function (e) {
+  themeDropDown.style.display = "flex";
 
-themeDropDown.addEventListener('click',function(e){
-  if(e.target.classList.contains('theme-col-box') || e.target.classList.contains('bg-col-box')){
-    let curThemeThumbnail=e.target.closest('.theme-thumbnail')
-    console.log(curThemeThumbnail.id)
-    let check=themeDropDown.querySelector('.fa-check')
-    check.remove()
-    curThemeThumbnail.lastElementChild.append(check)
+  let curThemeThumbnail = themeDropDown.querySelector(`#${curTheme}`);
+
+  if (curThemeThumbnail.lastElementChild.firstElementChild) {
+    return;
   }
-})
 
-todayBtn.addEventListener('click',function(e){
-  console.log('going back to today')
-  seekedDate=new Date()
+  let checkIcon = document.createElement("i");
+  checkIcon.classList.add("fa-solid");
+  checkIcon.classList.add("fa-check");
 
-  createTodoBodySkeleton(seekedDate)
-  loadEntriesForDate(seekedDate)
+  curThemeThumbnail.lastElementChild.append(checkIcon);
+});
 
-  if(!nxtTodoSwitch.classList.contains('disable')){
-    nxtTodoSwitch.classList.add('disable')
+themeDropDownCloseIcon.addEventListener("click", function (e) {
+  themeDropDown.style.display = "none";
+});
+
+themeDropDown.addEventListener("click", function (e) {
+  if (
+    e.target.classList.contains("theme-col-box") ||
+    e.target.classList.contains("bg-col-box")
+  ) {
+    let curThemeThumbnail = e.target.closest(".theme-thumbnail");
+    console.log("setting theme to:", curThemeThumbnail.id);
+    let check = themeDropDown.querySelector(".fa-check");
+    check.remove();
+    curThemeThumbnail.lastElementChild.append(check);
+
+    setTheme(curThemeThumbnail.id);
   }
-})
+});
 
-prevTodoSwitch.addEventListener('click',function(e){
-  console.log('fetching prev todo entries')
+todayBtn.addEventListener("click", function (e) {
+  console.log("going back to today");
+  seekedDate = new Date();
+
+  createTodoBodySkeleton(seekedDate);
+  loadEntriesForDate(seekedDate);
+
+  if (!nxtTodoSwitch.classList.contains("disable")) {
+    nxtTodoSwitch.classList.add("disable");
+  }
+});
+
+prevTodoSwitch.addEventListener("click", function (e) {
+  console.log("fetching prev todo entries");
   // let curDate=seekedDate.getDate()
   // let curMonth=seekedDate.getMonth()
   // let curYear=seekedDate.getFullYear()
 
-  seekedDate.setDate(seekedDate.getDate()-1)
+  seekedDate.setDate(seekedDate.getDate() - 1);
 
-  createTodoBodySkeleton(seekedDate)
-  loadEntriesForDate(seekedDate)
+  createTodoBodySkeleton(seekedDate);
+  loadEntriesForDate(seekedDate);
 
-  nxtTodoSwitch.classList.remove('disable')
-})
+  nxtTodoSwitch.classList.remove("disable");
+});
 
-nxtTodoSwitch.addEventListener('click',function(e){
-  console.log('fetching nxt todo entries')
+nxtTodoSwitch.addEventListener("click", function (e) {
+  console.log("fetching nxt todo entries");
 
-  seekedDate.setDate(seekedDate.getDate()+1)
+  seekedDate.setDate(seekedDate.getDate() + 1);
 
-  createTodoBodySkeleton(seekedDate)
-  loadEntriesForDate(seekedDate)
-  
-  if(isDateToday(seekedDate,seekedDate.getDate())){
-    nxtTodoSwitch.classList.add('disable')
+  createTodoBodySkeleton(seekedDate);
+  loadEntriesForDate(seekedDate);
+
+  if (isDateToday(seekedDate, seekedDate.getDate())) {
+    nxtTodoSwitch.classList.add("disable");
   }
-})
+});
 
 addTodoEntryBtn.addEventListener("click", function (e) {
   addTodoEntryBtn.style.display = "none";
@@ -222,42 +242,44 @@ let todoPendingContainer = document.querySelector(".pending-container");
 createTodoBodySkeleton(todayDate);
 loadEntriesForDate(todayDate);
 
-searchBar.addEventListener('keyup',function(e){
-  console.log(e.target.value)
-  let todoEntryElementsArray=Array.from(document.getElementsByClassName('todo-text'))
-  console.log(todoEntryElementsArray)
+searchBar.addEventListener("keyup", function (e) {
+  console.log(e.target.value);
+  let todoEntryElementsArray = Array.from(
+    document.getElementsByClassName("todo-text")
+  );
+  console.log(todoEntryElementsArray);
 
-  if(!todoEntryElementsArray){
-    console.log('there are 0 entries!')
-    return
+  if (!todoEntryElementsArray) {
+    console.log("there are 0 entries!");
+    return;
   }
 
   const searchQuery = e.target.value.toLowerCase();
 
-  todoEntryElementsArray.forEach(function(item){
-    let title=item.firstElementChild.innerText.toLowerCase()
-    let description=item.lastElementChild.innerText.toLowerCase()
+  todoEntryElementsArray.forEach(function (item) {
+    let title = item.firstElementChild.innerText.toLowerCase();
+    let description = item.lastElementChild.innerText.toLowerCase();
 
-    let todoEntry=item.parentElement
-    let todoEditor=todoEntry.nextElementSibling
-    let hr=todoEditor.nextElementSibling
+    let todoEntry = item.parentElement;
+    let todoEditor = todoEntry.nextElementSibling;
+    let hr = todoEditor.nextElementSibling;
 
-    if(title.includes(searchQuery) || description.includes(searchQuery)){
-      todoEntry.style.display='flex'
-      todoEditor.style.display='none'
-      hr.style.display='block'
-    }else{
-      todoEntry.style.display='none'
-      todoEditor.style.display='none'
-      hr.style.display='none'
+    if (title.includes(searchQuery) || description.includes(searchQuery)) {
+      todoEntry.style.display = "flex";
+      todoEditor.style.display = "none";
+      hr.style.display = "block";
+    } else {
+      todoEntry.style.display = "none";
+      todoEditor.style.display = "none";
+      hr.style.display = "none";
     }
-  })
-})
+  });
+});
 
-searchBar.addEventListener('focusout',function(e){
-  createTodoBodySkeleton(seekedDate)
-  loadEntriesForDate(seekedDate)
-})
+searchBar.addEventListener("focusout", function (e) {
+  createTodoBodySkeleton(seekedDate);
+  loadEntriesForDate(seekedDate);
+});
 
 todoContainer.addEventListener("click", function (e) {
   console.log("todoContainer clicked!", e.target);
@@ -304,12 +326,16 @@ todoContainer.addEventListener("click", function (e) {
     let todoEntry = e.target.closest(".todo-entry");
     let todoEditEntry = todoEntry.nextElementSibling;
     let horizontalRule = todoEditEntry.nextElementSibling;
-    let curTodoHeader=e.target.closest('.todo-container').firstElementChild
-    let curDateStr=`${curTodoHeader.getAttribute('data-day')}-${curTodoHeader.getAttribute('data-month')}-${curTodoHeader.getAttribute('data-year')}`
-    let uid=todoEntry.getAttribute('data-uid')
-    let status=todoEntry.parentElement.getAttribute('data-status')
+    let curTodoHeader = e.target.closest(".todo-container").firstElementChild;
+    let curDateStr = `${curTodoHeader.getAttribute(
+      "data-day"
+    )}-${curTodoHeader.getAttribute("data-month")}-${curTodoHeader.getAttribute(
+      "data-year"
+    )}`;
+    let uid = todoEntry.getAttribute("data-uid");
+    let status = todoEntry.parentElement.getAttribute("data-status");
 
-    deleteEntryFromLocalStorage(curDateStr,status,uid)
+    deleteEntryFromLocalStorage(curDateStr, status, uid);
 
     todoEntry.remove();
     todoEditEntry.remove();
@@ -323,31 +349,51 @@ todoContainer.addEventListener("click", function (e) {
     todoEntry.style.display = "flex";
   } else if (e.target.classList.contains("edit-save-btn")) {
     let curTodoEditor = e.target.closest(".edit-todo-entry");
-    let curTodoEditTitle = curTodoEditor.getElementsByClassName("edit-title-text")[0];
-    let curTodoEditDesc = curTodoEditor.getElementsByClassName("edit-description-text")[0];
+    let curTodoEditTitle =
+      curTodoEditor.getElementsByClassName("edit-title-text")[0];
+    let curTodoEditDesc = curTodoEditor.getElementsByClassName(
+      "edit-description-text"
+    )[0];
 
     console.log(curTodoEditTitle.value, curTodoEditDesc.value);
 
     let curTodoEntry = curTodoEditor.previousElementSibling;
     let curTodoTitleText = curTodoEntry.getElementsByClassName("title")[0];
     let curTodoDescText = curTodoEntry.getElementsByClassName("description")[0];
-    let curTodoHeader=e.target.closest('.todo-container').firstElementChild
-    let curDateStr=`${curTodoHeader.getAttribute('data-day')}-${curTodoHeader.getAttribute('data-month')}-${curTodoHeader.getAttribute('data-year')}`
-    let status=curTodoEntry.parentElement.getAttribute('data-status')
-    let uid=curTodoEntry.getAttribute('data-uid')
+    let curTodoHeader = e.target.closest(".todo-container").firstElementChild;
+    let curDateStr = `${curTodoHeader.getAttribute(
+      "data-day"
+    )}-${curTodoHeader.getAttribute("data-month")}-${curTodoHeader.getAttribute(
+      "data-year"
+    )}`;
+    let status = curTodoEntry.parentElement.getAttribute("data-status");
+    let uid = curTodoEntry.getAttribute("data-uid");
 
     curTodoTitleText.innerText = curTodoEditTitle.value;
     curTodoDescText.innerText = curTodoEditDesc.value;
 
-    updateEntryInLocalStorage(curDateStr,curTodoEditTitle.value,curTodoEditDesc.value,status,uid)
+    updateEntryInLocalStorage(
+      curDateStr,
+      curTodoEditTitle.value,
+      curTodoEditDesc.value,
+      status,
+      uid
+    );
 
     curTodoEditor.style.display = "none";
     curTodoEntry.style.display = "flex";
-  } else if (e.target.classList.contains("custom-check") || e.target.classList.contains("fa-check")) {
+  } else if (
+    e.target.classList.contains("custom-check") ||
+    e.target.classList.contains("fa-check")
+  ) {
     console.log(e.target.tagName);
-    let curTodoHeader=e.target.closest('.todo-container').firstElementChild
-    console.log('curTodoHeader',curTodoHeader)
-    let curDateStr=`${curTodoHeader.getAttribute('data-day')}-${curTodoHeader.getAttribute('data-month')}-${curTodoHeader.getAttribute('data-year')}`
+    let curTodoHeader = e.target.closest(".todo-container").firstElementChild;
+    console.log("curTodoHeader", curTodoHeader);
+    let curDateStr = `${curTodoHeader.getAttribute(
+      "data-day"
+    )}-${curTodoHeader.getAttribute("data-month")}-${curTodoHeader.getAttribute(
+      "data-year"
+    )}`;
 
     if (e.target.tagName === "I" || e.target.firstElementChild) {
       console.log("div is checked", e.target.firstChild);
@@ -356,8 +402,8 @@ todoContainer.addEventListener("click", function (e) {
       let todoEditEntry = todoEntry.nextElementSibling;
       let hr = todoEditEntry.nextElementSibling;
 
-      let curUid=todoEntry.getAttribute('data-uid')
-      updateStatusInLocalStorage(curDateStr,'done',curUid)
+      let curUid = todoEntry.getAttribute("data-uid");
+      updateStatusInLocalStorage(curDateStr, "done", curUid);
 
       todoEntry.remove();
       todoEditEntry.remove();
@@ -378,8 +424,8 @@ todoContainer.addEventListener("click", function (e) {
       let todoEditEntry = todoEntry.nextElementSibling;
       let hr = todoEditEntry.nextElementSibling;
 
-      let curUid=todoEntry.getAttribute('data-uid')
-      updateStatusInLocalStorage(curDateStr,'pending',curUid)
+      let curUid = todoEntry.getAttribute("data-uid");
+      updateStatusInLocalStorage(curDateStr, "pending", curUid);
 
       console.log(todoEntry, todoEditEntry, hr);
 
@@ -407,83 +453,86 @@ calContainer.addEventListener("click", function (e) {
 
   if (e.target.classList.contains("date-cell")) {
     console.log("date cell clicked!");
-    let cDate=parseInt(e.target.innerText)
-    let cMonth=parseInt(calBody.getAttribute('data-month'))
-    let cYear=parseInt(calBody.getAttribute('data-year'))
+    let cDate = parseInt(e.target.innerText);
+    let cMonth = parseInt(calBody.getAttribute("data-month"));
+    let cYear = parseInt(calBody.getAttribute("data-year"));
 
-    let sDate=new Date(cYear,cMonth,cDate)
+    let sDate = new Date(cYear, cMonth, cDate);
 
-    console.log('Date',sDate,typeof cDate)
+    console.log("Date", sDate, typeof cDate);
 
-    if(cYear===todayDate.getFullYear() && 
-    cMonth===todayDate.getMonth() && cDate>todayDate.getDate()){
-      console.log('future date seek not allowed!')
+    if (
+      cYear === todayDate.getFullYear() &&
+      cMonth === todayDate.getMonth() &&
+      cDate > todayDate.getDate()
+    ) {
+      console.log("future date seek not allowed!");
       return;
     }
 
-    if(!isDateToday(sDate,sDate.getDate())){
-      nxtTodoSwitch.classList.remove('disable')
-    }else{
-      if(!nxtTodoSwitch.classList.contains('disable')){
-        nxtTodoSwitch.classList.add('disable')
+    if (!isDateToday(sDate, sDate.getDate())) {
+      nxtTodoSwitch.classList.remove("disable");
+    } else {
+      if (!nxtTodoSwitch.classList.contains("disable")) {
+        nxtTodoSwitch.classList.add("disable");
       }
     }
 
-    seekedDate=sDate
+    seekedDate = sDate;
 
-    createTodoBodySkeleton(seekedDate)
-    loadEntriesForDate(seekedDate)
+    createTodoBodySkeleton(seekedDate);
+    loadEntriesForDate(seekedDate);
   }
 });
 
-function deleteEntryFromLocalStorage(storageKey,status,uid){
-  console.log(storageKey,status,uid)
+function deleteEntryFromLocalStorage(storageKey, status, uid) {
+  console.log(storageKey, status, uid);
 
-  let curEntryObj=JSON.parse(localStorage.getItem(storageKey))
+  let curEntryObj = JSON.parse(localStorage.getItem(storageKey));
 
-  if(status==='pending'){
-    delete curEntryObj.pending[uid]
-  }else{
-    delete curEntryObj.done[uid]
+  if (status === "pending") {
+    delete curEntryObj.pending[uid];
+  } else {
+    delete curEntryObj.done[uid];
   }
 
-  localStorage.setItem(storageKey,JSON.stringify(curEntryObj))
+  localStorage.setItem(storageKey, JSON.stringify(curEntryObj));
 }
 
-function updateEntryInLocalStorage(storageKey,title,desc,status,uid){
-  console.log(storageKey,title,desc,status,uid)
+function updateEntryInLocalStorage(storageKey, title, desc, status, uid) {
+  console.log(storageKey, title, desc, status, uid);
 
-  let curEntryObj=JSON.parse(localStorage.getItem(storageKey))
+  let curEntryObj = JSON.parse(localStorage.getItem(storageKey));
 
-  let newEntry={title:title,description:desc}
-  if(status==='pending'){
-    curEntryObj.pending[uid]=newEntry
-  }else{
-    curEntryObj.done[uid]=newEntry
+  let newEntry = { title: title, description: desc };
+  if (status === "pending") {
+    curEntryObj.pending[uid] = newEntry;
+  } else {
+    curEntryObj.done[uid] = newEntry;
   }
 
-  localStorage.setItem(storageKey,JSON.stringify(curEntryObj))
+  localStorage.setItem(storageKey, JSON.stringify(curEntryObj));
 }
 
-function updateStatusInLocalStorage(storageKey,status,uid){
-  console.log(storageKey)
-  let curEntryObj=JSON.parse(localStorage.getItem(storageKey))
+function updateStatusInLocalStorage(storageKey, status, uid) {
+  console.log(storageKey);
+  let curEntryObj = JSON.parse(localStorage.getItem(storageKey));
 
-  console.log(curEntryObj)
+  console.log(curEntryObj);
 
-  let alteredEntry=null
+  let alteredEntry = null;
 
-  if(status==='pending'){
-    alteredEntry=curEntryObj.pending[uid]
-    delete curEntryObj.pending[uid]
-    curEntryObj.done[uid]=alteredEntry
-  }else{
-    alteredEntry=curEntryObj.done[uid]
-    delete curEntryObj.done[uid]
-    curEntryObj.pending[uid]=alteredEntry
+  if (status === "pending") {
+    alteredEntry = curEntryObj.pending[uid];
+    delete curEntryObj.pending[uid];
+    curEntryObj.done[uid] = alteredEntry;
+  } else {
+    alteredEntry = curEntryObj.done[uid];
+    delete curEntryObj.done[uid];
+    curEntryObj.pending[uid] = alteredEntry;
   }
 
-  localStorage.setItem(storageKey,JSON.stringify(curEntryObj))
+  localStorage.setItem(storageKey, JSON.stringify(curEntryObj));
 }
 
 function saveNewEntryToLocalStorage(date, title, desc) {
@@ -730,8 +779,8 @@ function getDaysInMonth(year, month) {
 }
 
 function createCalendarEntries(date, days) {
-  calBody.setAttribute('data-month',date.getMonth())
-  calBody.setAttribute('data-year',date.getFullYear())
+  calBody.setAttribute("data-month", date.getMonth());
+  calBody.setAttribute("data-year", date.getFullYear());
 
   calArr = [];
   let dayOfMonth = 1;
@@ -813,6 +862,17 @@ function populateCalendar() {
   }
 }
 
+function loadSavedTheme() {
+  let savedTheme = localStorage.getItem("theme");
+  return savedTheme ? savedTheme : "theme-default";
+}
+
+function setTheme(theme) {
+  localStorage.setItem("theme", theme);
+  curTheme = theme;
+  document.documentElement.className = theme;
+}
+
 function nth(d) {
   if (d > 3 && d < 21) return "th";
   switch (d % 10) {
@@ -843,17 +903,17 @@ function isDateYesterday(date, day) {
   );
 }
 
-function selectCell(cell) {
-  cell.classList.add("select-cell");
-  selectedCell = cell;
-}
+// function selectCell(cell) {
+//   cell.classList.add("select-cell");
+//   selectedCell = cell;
+// }
 
-function unselectCell() {
-  if (selectedCell) {
-    console.log("selected cell is still part of DOM", selectedCell);
-    selectedCell.classList.remove("select-cell");
-  }
-}
+// function unselectCell() {
+//   if (selectedCell) {
+//     console.log("selected cell is still part of DOM", selectedCell);
+//     selectedCell.classList.remove("select-cell");
+//   }
+// }
 
 function clearContents(parent) {
   while (parent.firstChild) {
