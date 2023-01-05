@@ -57,6 +57,8 @@ let cancelBtn = document.getElementById("cancel-btn");
 let curTheme = loadSavedTheme();
 setTheme(curTheme);
 
+console.log(document.querySelector('.navbar').clientHeight)
+
 themeSwitchBtn.addEventListener("click", function (e) {
   themeDropDown.style.display = "flex";
 
