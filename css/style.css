@@ -28,7 +28,7 @@ hr {
   background-color: black;
   color: white;
   width: 100%;
-  min-height: 45px;
+  /* min-height: 45px; */
 }
 
 .nav-left-container {
@@ -42,7 +42,7 @@ hr {
 }
 
 .search-container {
-  width: 60%;
+  width: 55%;
   padding: 0.3rem;
   display: flex;
   justify-content: center;
@@ -78,8 +78,8 @@ input.search-bar:focus {
 
 .brand-title {
   /* background-color: aqua; */
-  width: 15%;
-  min-width: 50px;
+  width: 21%;
+  min-width: 65px;
   font-size: 1.5rem;
   margin: 0.5rem 0;
   margin-left: 1rem;
