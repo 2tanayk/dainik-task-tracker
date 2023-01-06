@@ -20,3 +20,6 @@ Dainik - a web based day-to-day chore tracker
 - CSS
 - Javascript
 
+## Live Link
+https://dainik.netlify.app/
+
